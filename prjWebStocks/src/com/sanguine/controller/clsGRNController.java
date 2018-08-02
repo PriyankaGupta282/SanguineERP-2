@@ -2292,17 +2292,22 @@ public class clsGRNController {
 		List list = objGlobalFunctionsService.funGetList(sqlBuilder.toString(), "sql");
 
 		List prodList = new ArrayList();
-		if (list.size() > 0) {
-			Object[] ob = (Object[]) list.get(0);
+		if(null!=list){
+			if (list.size() > 0) {
+				Object[] ob = (Object[]) list.get(0);
 
-			prodList.add(ob[0].toString());
-			prodList.add(Double.parseDouble(ob[1].toString()));
+				prodList.add(ob[0].toString());
+				prodList.add(Double.parseDouble(ob[1].toString()));
 
+			} else {
+				prodList = new ArrayList();
+				prodList.add("Invalid Code ");
+			}
 		} else {
 			prodList = new ArrayList();
 			prodList.add("Invalid Code ");
 		}
-		return prodList;
+	return prodList;
 	}
 
 	@RequestMapping(value = "/loadAgainstDS", method = RequestMethod.GET)
